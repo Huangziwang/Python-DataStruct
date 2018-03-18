@@ -1,0 +1,30 @@
+class Stack:       #创建一个堆栈的类
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):    #判断堆栈是否为空
+        return self.items == []
+
+    def push(self, data):   #进栈
+        self.items.append(data)
+
+    def pop(self):  出栈
+        return self.items.pop()
+
+    def length(self):     #堆栈的长度
+        return len(self.items)
+
+    def peek(self):      #返回栈顶的第一个元素
+        return self.items[len(self.items) - 1]
+
+# 用于测试堆栈代码正确性
+# stack = Stack()
+# stack.push("hello")
+# stack.push("world")
+# stack.push("itcast")
+# print(stack.length())
+# print(stack.peek())
+# print(stack.length())
+# print(stack.pop())
+# print(stack.pop())
+# print(stack.pop())

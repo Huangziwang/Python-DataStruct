@@ -1,87 +1,87 @@
-class Node:              #定义链表的一个节点
-    def __init__(self,data):
-        self.data=data
-        self.next=None
+class Node:  # 定义链表的一个节点
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
 
 class SingleLinkList:
     def __init__(self):
-        self._head=None
+        self._head = None
 
-    def is_empty(self):      # is_empty() 链表是否为空
-        return self._head==None
+    def is_empty(self):  # is_empty() 链表是否为空
+        return self._head == None
 
-    def length(self):        # length() 链表长度
-        temp=self._head
-        i=0
-        while temp!=None:
-            i=i+1
-            temp=temp.next
+    def length(self):  # length() 链表长度
+        temp = self._head
+        i = 0
+        while temp != None:
+            i = i + 1
+            temp = temp.next
         return i
 
-    def travel(self):               # travel() 遍历整个链表
+    def travel(self):  # travel() 遍历整个链表
         if not self.is_empty():
-            temp=self._head
+            temp = self._head
             while temp != None:
                 print(temp.data)
                 temp = temp.next
 
-    def add(self,data):            # add(item) 链表头部添加元素
-            node=Node(data)
-            node.next=self._head
-            self._head=node
+    def add(self, data):  # add(item) 链表头部添加元素
+        node = Node(data)
+        node.next = self._head
+        self._head = node
 
-    def append(self,data):          # append(item) 链表尾部添加元素
+    def append(self, data):  # append(item) 链表尾部添加元素
         if self.is_empty():
-            node=Node(data)
-            self._head=node
+            node = Node(data)
+            self._head = node
         else:
-            temp=self._head
-            while temp.next!=None:
-                temp=temp.next
-            node=Node(data)
-            temp.next=node
+            temp = self._head
+            while temp.next != None:
+                temp = temp.next
+            node = Node(data)
+            temp.next = node
 
-    def insert(self,location,data):          # insert(location, item) 指定位置添加元素
-        if location<=0:
+    def insert(self, location, data):  # insert(location, item) 指定位置添加元素
+        if location <= 0:
             self.add(data)
-        elif location>(self.length()-1):
+        elif location > (self.length() - 1):
             self.append(data)
         else:
-            i=0
-            temp=self._head
-            while i<location-1:
-                i=i+1
-                temp=temp.next
-            node=Node(data)
-            node.next=temp.next
-            temp.next=node
+            i = 0
+            temp = self._head
+            while i < location - 1:
+                i = i + 1
+                temp = temp.next
+            node = Node(data)
+            node.next = temp.next
+            temp.next = node
 
-    def search(self,data):         # search(item) 查找节点是否存在
+    def search(self, data):  # search(item) 查找节点是否存在
         if self.is_empty():
             return 0
         else:
-            temp=self._head
-            while temp!=None and data!=temp.data:
-                temp=temp.next
-            if temp==None:
+            temp = self._head
+            while temp != None and data != temp.data:
+                temp = temp.next
+            if temp == None:
                 return 0
-            else: return 1
+            else:
+                return 1
 
-    def remove(self,data):             # remove(data) 删除数据为第一个data的节点
-        if self.search(data)==0:
+    def remove(self, data):  # remove(data) 删除数据为第一个data的节点
+        if self.search(data) == 0:
             print("NO this data")
         else:
-            temp=self._head
-            if temp.data!=data:
-                while temp.next !=None:
-                    if temp.next.data==data:
+            temp = self._head
+            if temp.data != data:
+                while temp.next != None:
+                    if temp.next.data == data:
                         break
-                        temp=temp.next
-            temp.next=temp.next.next
+                        temp = temp.next
+            temp.next = temp.next.next
 
-
-#用于验证链表的正确性
+#用于验证单链表是否正确
 # ll = SingleLinkList()
 # ll.add(1)
 # ll.travel()

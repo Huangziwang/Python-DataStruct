@@ -1,0 +1,79 @@
+class Node(object):  # 创建输的一个节点
+    def __init__(self, data=0, lchild=None, rchild=None):
+        self.data = data
+        self.lchild = lchild
+        self.rchild = rchild
+
+
+class Tree(object):  # 创建树的类
+    def __init__(self, root=None):
+        self.root = root
+
+    def add(self, data):  # 往树中添加元素 利用递归来进行树的创建
+        node = Node(data)
+        if self.root == None:
+            self.root = node
+        else:
+            queue = []
+            queue.append(self.root)
+            while queue:
+                temp = queue.pop(0)
+                if temp.lchild == None:
+                    temp.lchild = node
+                    return
+                elif temp.rchild == None:
+                    temp.rchild = node
+                    return
+                else:
+                    queue.append(temp.lchild)
+                    queue.append(temp.rchild)
+
+    def preorder(self, root):  # 前序遍历
+        if root == None:
+            return
+        else:
+            print(root.data)
+            self.preorder(root.lchild)
+            self.preorder(root.rchild)
+
+    def inorder(self, root):  # 中序遍历
+        if root == None:
+            return
+        else:
+            self.preorder(root.lchild)
+            print(root.data)
+            self.preorder(root.rchild)
+
+    def postorder(self, root):  # 后序遍历
+        if root == None:
+            return
+        else:
+            self.preorder(root.lchild)
+            self.preorder(root.rchild)
+            print(root.data)
+
+    def breath_travel(self, root):  # 利用队列实现广度优先遍历
+        if root == None:
+            return
+        else:
+            queue = []
+            queue.append(root)
+            while queue:
+                temp = queue.pop(0)
+                print(temp.data)
+                if temp.lchild != None:
+                    queue.append(temp.lchild)
+                if temp.rchild != None:
+                    queue.append(temp.rchild)
+
+# 用于测试树结构是否正确
+# tree=Tree()
+# l=['a','b','c','d','e','f','g']
+# for i in l:
+#     tree.add(i)
+# tree.preorder(tree.root)
+# print("****")
+# tree.inorder(tree.root)
+# print("****")
+# tree.postorder(tree.root)
+# tree.breath_travel(tree.root)
